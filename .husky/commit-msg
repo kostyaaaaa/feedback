@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+message="$(cat $1)"
+rx='^\[[^][]*] (resolved|fixed) #[0-9]* [A-Z][[:alnum:]_].*'
+if echo "$message" | grep -qE "$rx";
+then
+  echo "✅ Commit message is valid!"
+else
+  echo "🚨 Wrong commit message! 😕"
+  exit 1
+fi
