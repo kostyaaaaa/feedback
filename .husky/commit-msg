@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-message="$(cat $1)"
-rx='^\[[^][]*] (resolved|fixed) #[0-9]* [A-Z][[:alnum:]_].*'
-if echo "$message" | grep -qE "$rx";
-then
+message="$(cat "$1")"
+rx="^(feature|bugfix|chore)\/([a-zA-Z0-9]*-[a-zA-Z0-9]*)+$"
+
+if echo "$message" | grep -qE "$rx"; then
   echo "✅ Commit message is valid!"
 else
   echo "🚨 Wrong commit message! 😕"
