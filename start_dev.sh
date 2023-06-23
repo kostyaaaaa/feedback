@@ -1,1 +1,0 @@
-concurrently 'cd ./client && npm run dev' 'cd ./server/authService && npm run dev' 'cd ./server/clearService && npm run dev' 'cd ./server/feedbackService && npm run dev' 'cd ./server/storageService && npm run dev'

@@ -23,3 +23,9 @@ client/out/
 # typescript
 **/*.tsbuildinfo
 **/next-env.d.ts
+
+# postgres_db
+postgres_data
+
+# rabbitmq
+rabbitmq

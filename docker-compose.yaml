@@ -1,0 +1,151 @@
+version: '3'
+
+services:
+  postgres_database:
+    container_name: postgres_database
+    hostname: ${DB_HOST}
+    image: postgres
+    ports:
+      - ${DB_PORT}:5432
+    environment:
+      PGDATA: /var/lib/postgresql/data/
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    restart: on-failure
+    networks:
+      - db_network
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.10.7-management
+    hostname: ${RABBITMQ_HOST}
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: -rabbit log_levels [{connection,error},{default,error}] disk_free_limit 2147483648
+    volumes:
+      - ./rabbitmq:/var/lib/rabbitmq
+    ports:
+      - ${RABBITMQ_WEB_INTERFACE_PORT}:15672
+      - ${RABBITMQ_PORT}:5672
+    networks:
+      - rabbitmq_network
+
+  auth:
+    container_name: auth
+    environment:
+      AUTH_PORT: ${AUTH_PORT}
+      AMQP_URL: ${AMQP_URL}
+    ports:
+      - ${AUTH_PORT}:${AUTH_PORT}
+    build:
+      context: ./server/authService
+      dockerfile: Dockerfile
+    volumes:
+      - ./server/authService/:/var/www/auth
+      - ./server/authService/node_modules:/var/www/auth/node_modules
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+    command: npm run dev
+    links:
+      - rabbitmq:${RABBITMQ_HOST}
+    networks:
+      - rabbitmq_network
+
+  clear:
+    container_name: clear
+    environment:
+      CLEAR_PORT: ${CLEAR_PORT}
+      AMQP_URL: ${AMQP_URL}
+    ports:
+      - ${CLEAR_PORT}:${CLEAR_PORT}
+    build:
+      context: ./server/clearService
+      dockerfile: Dockerfile
+    volumes:
+      - ./server/clearService/:/var/www/auth
+      - ./server/clearService/node_modules:/var/www/auth/node_modules
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+    command: npm run dev
+    links:
+      - rabbitmq:${RABBITMQ_HOST}
+    networks:
+      - rabbitmq_network
+
+  storage:
+    container_name: storage
+    environment:
+      STORAGE_PORT: ${STORAGE_PORT}
+      AMQP_URL: ${AMQP_URL}
+    ports:
+      - ${STORAGE_PORT}:${STORAGE_PORT}
+    build:
+      context: ./server/storageService
+      dockerfile: Dockerfile
+    volumes:
+      - ./server/storageService/:/var/www/auth
+      - ./server/storageService/node_modules:/var/www/auth/node_modules
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+    command: npm run dev
+    links:
+      - rabbitmq:${RABBITMQ_HOST}
+    networks:
+      - rabbitmq_network
+
+  feedback:
+    container_name: feedback
+    environment:
+      FEEDBACK_PORT: ${FEEDBACK_PORT}
+      AMQP_URL: ${AMQP_URL}
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_PORT: ${DB_PORT}
+    ports:
+      - ${FEEDBACK_PORT}:${FEEDBACK_PORT}
+    build:
+      context: ./server/feedbackService
+      dockerfile: Dockerfile
+    volumes:
+      - ./server/feedbackService:/var/www/feedback
+      - ./server/feedbackService/node_modules:/var/www/feedback/node_modules
+    restart: on-failure
+    command: npm run dev
+    links:
+      - rabbitmq:${RABBITMQ_HOST}
+      - postgres_database:${DB_HOST}
+    depends_on:
+      - postgres_database
+      - rabbitmq
+    networks:
+      - rabbitmq_network
+      - db_network
+
+  client:
+    container_name: client
+    environment:
+      CLIENT_PORT: ${CLIENT_PORT}
+    ports:
+      - ${CLIENT_PORT}:${CLIENT_PORT}
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    volumes:
+      - ./client:/var/www/client
+      - ./client/node_modules:/var/www/client/node_modules
+    restart: on-failure
+    command: npm run dev
+
+networks:
+  db_network:
+  rabbitmq_network:
