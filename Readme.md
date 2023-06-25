@@ -1,15 +1,21 @@
-Before start please create .env file in server folder (see .env.example).
+# Before start please create `.env` file, see `.env.example`
 
-To install dependencies you can run:
+To run project in development mode you can use:
 
 ```sh
-    sudo bash install_dependencies.sh
+    docker-compose up
 ```
 
-To run project in development mode you can use
+To get into docker container you can use:
 
 ```sh
-    sudo bash start_dev.sh
+    sudo docker container exec -it ${container_id} sh
+```
+
+To get docker container id you can use:
+
+```sh
+    docker container ls
 ```
 
 This project used prettier to format the code.
