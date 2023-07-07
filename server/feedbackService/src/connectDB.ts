@@ -2,8 +2,11 @@ import { Sequelize } from 'sequelize-typescript';
 
 const { DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT } = process.env;
 
-const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+const sequelize = new Sequelize({
+  database: DB_NAME,
   dialect: 'postgres',
+  username: DB_USER,
+  password: DB_PASSWORD,
   port: DB_PORT,
   host: DB_HOST,
   models: [__dirname + '/models'],
