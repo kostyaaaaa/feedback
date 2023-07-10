@@ -48,4 +48,6 @@ class Feedback extends Model {
   place: Place;
 }
 
+Feedback.sync();
+
 export default Feedback;

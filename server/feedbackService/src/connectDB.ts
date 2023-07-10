@@ -1,5 +1,4 @@
 import { Sequelize } from 'sequelize-typescript';
-import * as models from './models';
 
 const { DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT } = process.env;
 
@@ -10,7 +9,7 @@ const sequelize = new Sequelize({
   password: DB_PASSWORD,
   port: DB_PORT,
   host: DB_HOST,
-  models: Object.values(models),
+  models: [__dirname + '/models/**/*.ts'],
 });
 
 sequelize
