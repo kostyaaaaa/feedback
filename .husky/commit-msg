@@ -2,7 +2,7 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 message="$(cat "$1")"
-rx="^(feature|bugfix|chore)\/([a-zA-Z0-9-]+ )+[a-zA-Z0-9-]+$"
+rx="^(WIP: )?(feature|bugfix|chore)\/([a-zA-Z0-9-]+ )+[a-zA-Z0-9-]+$"
 
 if echo "$message" | grep -qE "$rx"; then
   echo "✅ Commit message is valid!"

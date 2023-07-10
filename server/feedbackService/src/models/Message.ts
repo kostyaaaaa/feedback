@@ -45,4 +45,6 @@ class Message extends Model {
   author: User;
 }
 
+Message.sync();
+
 export default Message;
