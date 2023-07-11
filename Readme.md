@@ -18,4 +18,16 @@ To get docker container id you can use:
     docker container ls
 ```
 
+To run migrations locally you can use:
+
+```sh
+    docker-compose run --rm feedback npm run migrate
+```
+
+To run seeds locally you can use:
+
+```sh
+    docker-compose run --rm feedback npm run seed
+```
+
 This project used prettier to format the code.
