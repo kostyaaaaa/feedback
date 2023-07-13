@@ -393,9 +393,9 @@ COPY public."UserChats" (id, "userId", "chatId", "createdAt", "updatedAt") FROM 
 --
 
 COPY public."Users" (id, "firstName", "lastName", email, password, role, "profileUrl", gender, status, "createdAt", "updatedAt") FROM stdin;
-1	Kostyantyn	Arabadzhi	kostyaarabadji@gmail.com	123456	user	\N	male	active	2023-07-12 18:42:34.044+00	2023-07-12 18:42:34.044+00
-2	Evhen	Sirovatka	evhensyrovatka@gmail.com	123456	user	\N	male	active	2023-07-12 18:42:34.044+00	2023-07-12 18:42:34.044+00
-3	Rodion	Ivanov	rodionivanov@gmail.com	123456	user	\N	male	active	2023-07-12 18:42:34.044+00	2023-07-12 18:42:34.044+00
+1	Kostyantyn	Arabadzhi	kostyaarabadji@gmail.com	123456	user	\N	male	active	2023-07-13 12:51:01.176+00	2023-07-13 12:51:01.176+00
+2	Evhenii	Syrovatka	evsyrovatka@gmail.com	123456	user	\N	male	active	2023-07-13 12:51:01.176+00	2023-07-13 12:51:01.176+00
+3	Rodion	Ivanov	ivanovrodion.io92@gmail.com	123456	user	\N	male	active	2023-07-13 12:51:01.176+00	2023-07-13 12:51:01.176+00
 \.
 
 
