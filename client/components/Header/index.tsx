@@ -1,4 +1,5 @@
 import { Flex } from '@/common/components/Flex';
+import LangChange from '@/common/components/LangChange/LangChange.component';
 import { FormControlLabel, Switch, Typography, useTheme } from '@mui/material';
 import Link from 'next/link';
 
@@ -15,6 +16,9 @@ const Header = ({ switchTheme }: HeaderProps) => {
 
       <Flex alignVertical="center" gap="10px">
         <Link href="/signin">Login</Link>
+
+        <span>|</span>
+        <LangChange />
         <span>|</span>
         <FormControlLabel
           control={<Switch />}

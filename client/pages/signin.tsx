@@ -6,11 +6,12 @@ import React, { ReactNode } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Login = () => {
-  const { t } = useTranslation('auth');
+  const { t } = useTranslation('signin');
 
   return (
     <Flex direction="column">
       <Typography>{t('signIn_header')}</Typography>
+
       <Link href="/">Dashboard</Link>
     </Flex>
   );
@@ -24,7 +25,7 @@ Login.getLayout = LoginLayout;
 export async function getStaticProps({ locale }: any) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['auth'])),
+      ...(await serverSideTranslations(locale, ['signin'])),
     },
   };
 }
