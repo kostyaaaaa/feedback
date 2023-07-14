@@ -85,6 +85,4 @@ class User extends Model {
   status: string;
 }
 
-User.sync();
-
 export default User;

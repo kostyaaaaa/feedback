@@ -30,6 +30,4 @@ class Chat extends Model {
   name: string;
 }
 
-Chat.sync();
-
 export default Chat;
