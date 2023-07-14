@@ -25,6 +25,4 @@ class UserChat extends Model {
   chatId: number;
 }
 
-UserChat.sync();
-
 export default UserChat;

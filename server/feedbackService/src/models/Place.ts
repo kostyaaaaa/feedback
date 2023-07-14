@@ -49,6 +49,4 @@ class Place extends Model {
   owner: User;
 }
 
-Place.sync();
-
 export default Place;

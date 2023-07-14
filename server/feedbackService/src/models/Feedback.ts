@@ -5,7 +5,6 @@ import {
   AutoIncrement,
   Column,
   ForeignKey,
-  AllowNull,
   DataType,
   Min,
   Max,
@@ -29,7 +28,6 @@ class Feedback extends Model {
   @Column
   placeId: number;
 
-  @AllowNull(false)
   @Min(1)
   @Max(5)
   @Column(DataType.FLOAT)
@@ -47,7 +45,5 @@ class Feedback extends Model {
   @BelongsTo(() => Place)
   place: Place;
 }
-
-Feedback.sync();
 
 export default Feedback;

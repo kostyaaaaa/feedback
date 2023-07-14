@@ -4,7 +4,7 @@ Learn git game https://learngitbranching.js.org/
 
 # Hints and solutions
 
-## Typescript
+### Typescript
 
 Process envs https://stackoverflow.com/questions/45194598/using-process-env-in-typescript
 
@@ -26,6 +26,7 @@ Why rabbitMQ https://habr.com/ru/companies/southbridge/articles/684412/
 
 ### DB
 
+Postgres Dump and Restore https://www.postgresql.org/docs/current/backup-dump.html
 SQL raw queries practice game https://www.sql-practice.com/
 SQL vs NOSQL (postgresql vs mongodb) https://www.integrate.io/blog/mongodb-vs-postgresql/
 
