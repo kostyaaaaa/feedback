@@ -1,8 +1,0 @@
-export const AUTH_ACTION_TYPES = {
-  LOGIN: 'LOGIN',
-  REGISTER: 'REGISTER',
-};
-
-export const USER_ACTION_TYPES = {
-  GET_USER_BY_ID: 'GET_USER_BY_ID',
-};

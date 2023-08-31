@@ -2,13 +2,12 @@ import { Router } from 'express';
 import initUserRouter from './userRouter';
 import initAuthRouter from './authRouter';
 import { tokenMiddleware } from '../middleware';
-import { Channel } from 'amqplib';
 
-const initRootRouter = (channel: Channel): Router => {
+const initRootRouter = (): Router => {
   const router = Router();
 
-  router.use('/user', tokenMiddleware, initUserRouter(channel));
-  router.use('/auth', initAuthRouter(channel));
+  router.use('/user', tokenMiddleware, initUserRouter());
+  router.use('/auth', initAuthRouter());
 
   return router;
 };

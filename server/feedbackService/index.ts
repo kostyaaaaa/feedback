@@ -3,8 +3,6 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import './src/connectDB';
 import errorHandler from './src/utils/errorHandler';
-import connectMQ from './src/connectMQ';
-import initRootHandler from './src/handlers';
 
 dotenv.config();
 
@@ -15,22 +13,12 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-const startServer = async () => {
-  // connect to rabbitMQ
-  const channel = await connectMQ();
+// add global error handler
+app.use(errorHandler);
 
-  // initialize root handler
-  initRootHandler(channel);
-
-  // add global error handler
-  app.use(errorHandler);
-
-  // run server
-  app.listen(port, () => {
-    console.log(
-      `⚡️[feedback server]: Server is running at http://localhost:${port}`,
-    );
-  });
-};
-
-startServer();
+// run server
+app.listen(port, () => {
+  console.log(
+    `⚡️[feedback server]: Server is running at http://localhost:${port}`,
+  );
+});
