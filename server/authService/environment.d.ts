@@ -3,7 +3,14 @@ declare global {
     interface ProcessEnv {
       AUTH_PORT: number;
       AMQP_URL: string;
+      JWT_SECRET_KEY: string;
     }
+  }
+}
+
+declare module 'express-serve-static-core' {
+  export interface Request {
+    userId: string;
   }
 }
 

@@ -40,6 +40,7 @@ services:
     environment:
       AUTH_PORT: ${AUTH_PORT}
       AMQP_URL: ${AMQP_URL}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
     ports:
       - ${AUTH_PORT}:${AUTH_PORT}
     build:
