@@ -3,6 +3,7 @@ declare global {
     interface ProcessEnv {
       AUTH_PORT: number;
       JWT_SECRET_KEY: string;
+      FEEDBACK_PORT: string;
     }
   }
 }

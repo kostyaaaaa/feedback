@@ -23,6 +23,7 @@ services:
     environment:
       AUTH_PORT: ${AUTH_PORT}
       JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      FEEDBACK_PORT: ${FEEDBACK_PORT}
     ports:
       - ${AUTH_PORT}:${AUTH_PORT}
     build:

@@ -1,12 +1,11 @@
 import { Router } from 'express';
-import { bodyMiddleware } from '../middleware';
 import authController from '../controllers/authController';
 
 const initAuthRouter = (): Router => {
   const router = Router();
 
-  router.post('/login', bodyMiddleware, authController.login);
-  router.post('/register', bodyMiddleware, authController.register);
+  router.post('/login', authController.login);
+  router.post('/register', authController.register);
 
   return router;
 };

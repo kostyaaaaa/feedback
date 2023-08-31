@@ -11,3 +11,18 @@ export class ConnectionError extends Error implements IConnectionError {
     this.name = name || 'ConnectionError';
   }
 }
+
+export interface IRequestError extends Error {
+  message: string;
+  code: number;
+  name: string;
+}
+export class RequestError extends Error implements IRequestError {
+  code: number;
+
+  constructor(message: string, code: number, name?: string) {
+    super(message);
+    this.code = code;
+    this.name = name || 'RequestError';
+  }
+}

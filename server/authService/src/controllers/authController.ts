@@ -1,14 +1,40 @@
 import { NextFunction, Request, Response } from 'express';
-import { STATUS_CODES } from '../constants';
+import HTTPService from '../services/HTTPService';
+import { generateToken } from '../utils/helpers';
+import { AxiosError } from 'axios';
+import { RequestError } from '../errors';
 
 class AuthController {
   login = async (req: Request, res: Response, next: NextFunction) => {
-    res.sendStatus(STATUS_CODES.ok);
+    try {
+      const { data, status } = await HTTPService.post('/auth/login', req.body);
+      const token = generateToken({ id: data });
+      res.status(status).json(token);
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        next(err.response?.data);
+      } else {
+        next(err);
+      }
+    }
   };
 
   register = async (req: Request, res: Response, next: NextFunction) => {
-    res.sendStatus(STATUS_CODES.created);
+    try {
+      const { data, status } = await HTTPService.post(
+        '/auth/register',
+        req.body,
+      );
+      const token = generateToken({ id: data });
+      res.status(status).json(token);
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        next(err.response?.data);
+      } else {
+        next(err);
+      }
+    }
   };
 }
 
-export default AuthController;
+export default new AuthController();

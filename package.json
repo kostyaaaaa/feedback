@@ -18,6 +18,7 @@
   "homepage": "https://github.com/kostyaaaaa/feedback#readme",
   "description": "",
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.3",
     "husky": "^8.0.3",
     "prettier": "2.8.8"
   }
