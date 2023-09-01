@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from 'express';
 import HTTPService from '../services/HTTPService';
 import { generateToken } from '../utils/helpers';
 import { AxiosError } from 'axios';
-import { RequestError } from '../errors';
 
 class AuthController {
   login = async (req: Request, res: Response, next: NextFunction) => {

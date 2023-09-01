@@ -1,7 +1,7 @@
 import express, { Express } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import initRootRouter from './src/routers';
+import rootRouter from './src/routers';
 import errorHandler from './src/utils/errorHandler';
 
 dotenv.config();
@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // initialize app router
-app.use('/api', initRootRouter());
+app.use('/api', rootRouter);
 
 // add global error handler
 app.use(errorHandler);

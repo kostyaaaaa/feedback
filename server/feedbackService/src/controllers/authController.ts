@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { STATUS_CODES } from '../constants';
-import AuthService from '../services/AuthService';
+import AuthService from '../services/authService';
 
 class AuthController {
   login = async (req: Request, res: Response, next: NextFunction) => {
