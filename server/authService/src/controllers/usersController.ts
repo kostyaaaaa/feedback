@@ -5,7 +5,7 @@ import { AxiosError } from 'axios';
 class UsersController {
   getCurrentUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { data, status } = await HTTPService.get(`/user/${req.userId}`);
+      const { data, status } = await HTTPService.get(`/users/${req.userId}`);
       res.status(status).json(data);
     } catch (err) {
       if (err instanceof AxiosError) {

@@ -5,7 +5,7 @@ import { tokenMiddleware } from '../middleware';
 
 const router = Router();
 
-router.use('/user', tokenMiddleware, usersRouter);
+router.use('/users', tokenMiddleware, usersRouter);
 router.use('/auth', authRouter);
 
 export default router;
