@@ -2,8 +2,15 @@ declare global {
   namespace NodeJS {
     interface ProcessEnv {
       AUTH_PORT: number;
-      AMQP_URL: string;
+      JWT_SECRET_KEY: string;
+      FEEDBACK_PORT: string;
     }
+  }
+}
+
+declare module 'express-serve-static-core' {
+  export interface Request {
+    userId: string;
   }
 }
 

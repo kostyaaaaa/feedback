@@ -13,16 +13,10 @@ Process envs https://stackoverflow.com/questions/45194598/using-process-env-in-t
 ### Templates
 
 Express + typescript https://blog.logrocket.com/how-to-set-up-node-typescript-express/
-RabbitMQ https://medium.com/nerd-for-tech/event-driven-architecture-with-typescript-and-rabbitmq-e9bafee5ab2d
 
 ### Architecture
 
 Microservices vs monolithic https://www.atlassian.com/microservices/microservices-architecture/microservices-vs-monolith
-
-### RabbitMQ
-
-Tutorial https://www.rabbitmq.com/getstarted.html
-Why rabbitMQ https://habr.com/ru/companies/southbridge/articles/684412/
 
 ### DB
 

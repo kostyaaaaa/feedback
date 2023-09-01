@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
 import * as models from './models';
+import { ConnectionError } from './errors';
 
 const { DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT } = process.env;
 
@@ -21,5 +22,7 @@ sequelize
     console.log(`Connection to ${DB_NAME} has been established successfully.`);
   })
   .catch((error) => {
-    console.error('Unable to connect to the database:', error);
+    throw new ConnectionError(
+      `Unable to connect to the database: ${error.message}`,
+    );
   });

@@ -18,28 +18,12 @@ services:
     networks:
       - db_network
 
-  rabbitmq:
-    container_name: rabbitmq
-    image: rabbitmq:3.10.7-management
-    hostname: ${RABBITMQ_HOST}
-    restart: always
-    environment:
-      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
-      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
-      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: -rabbit log_levels [{connection,error},{default,error}] disk_free_limit 2147483648
-    volumes:
-      - ./rabbitmq:/var/lib/rabbitmq
-    ports:
-      - ${RABBITMQ_WEB_INTERFACE_PORT}:15672
-      - ${RABBITMQ_PORT}:5672
-    networks:
-      - rabbitmq_network
-
   auth:
     container_name: auth
     environment:
       AUTH_PORT: ${AUTH_PORT}
-      AMQP_URL: ${AMQP_URL}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      FEEDBACK_PORT: ${FEEDBACK_PORT}
     ports:
       - ${AUTH_PORT}:${AUTH_PORT}
     build:
@@ -49,19 +33,14 @@ services:
       - ./server/authService/:/var/www/auth
       - ./server/authService/node_modules:/var/www/auth/node_modules
     restart: on-failure
-    depends_on:
-      - rabbitmq
     command: npm run dev
-    links:
-      - rabbitmq:${RABBITMQ_HOST}
     networks:
-      - rabbitmq_network
+      - services_network
 
   clear:
     container_name: clear
     environment:
       CLEAR_PORT: ${CLEAR_PORT}
-      AMQP_URL: ${AMQP_URL}
     ports:
       - ${CLEAR_PORT}:${CLEAR_PORT}
     build:
@@ -71,19 +50,14 @@ services:
       - ./server/clearService/:/var/www/auth
       - ./server/clearService/node_modules:/var/www/auth/node_modules
     restart: on-failure
-    depends_on:
-      - rabbitmq
     command: npm run dev
-    links:
-      - rabbitmq:${RABBITMQ_HOST}
     networks:
-      - rabbitmq_network
+      - services_network
 
   storage:
     container_name: storage
     environment:
       STORAGE_PORT: ${STORAGE_PORT}
-      AMQP_URL: ${AMQP_URL}
     ports:
       - ${STORAGE_PORT}:${STORAGE_PORT}
     build:
@@ -93,19 +67,14 @@ services:
       - ./server/storageService/:/var/www/auth
       - ./server/storageService/node_modules:/var/www/auth/node_modules
     restart: on-failure
-    depends_on:
-      - rabbitmq
     command: npm run dev
-    links:
-      - rabbitmq:${RABBITMQ_HOST}
     networks:
-      - rabbitmq_network
+      - services_network
 
   feedback:
     container_name: feedback
     environment:
       FEEDBACK_PORT: ${FEEDBACK_PORT}
-      AMQP_URL: ${AMQP_URL}
       DB_HOST: ${DB_HOST}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
@@ -122,13 +91,11 @@ services:
     restart: on-failure
     command: npm run dev
     links:
-      - rabbitmq:${RABBITMQ_HOST}
       - postgres_database:${DB_HOST}
     depends_on:
       - postgres_database
-      - rabbitmq
     networks:
-      - rabbitmq_network
+      - services_network
       - db_network
 
   client:
@@ -148,4 +115,4 @@ services:
 
 networks:
   db_network:
-  rabbitmq_network:
+  services_network:

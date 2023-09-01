@@ -7,7 +7,6 @@ declare global {
       DB_HOST: string;
       DB_PORT: number;
       FEEDBACK_PORT: number;
-      AMQP_URL: string;
     }
   }
 }
