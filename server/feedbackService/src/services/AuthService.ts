@@ -9,23 +9,30 @@ const bcryptSalt = 4;
 
 class AuthService {
   login = async ({ email, password }: ILoginParams) => {
-    const user = await User.findOne({ where: { email } });
-    if (!user) {
-      throw new RequestError('User not found', STATUS_CODES.notFound);
-    }
-    // specific case for the seed's admins
-    if (user.id < 4) {
-      const result = user.password === password;
+    try {
+      const user = await User.findOne({ where: { email } });
+      if (!user) {
+        throw new RequestError('User not found', STATUS_CODES.notFound);
+      }
+      // specific case for the seed's admins
+      if (user.id < 4) {
+        const result = user.password === password;
+        if (result) {
+          return user.id;
+        }
+        throw new RequestError(
+          'Password is incorrect',
+          STATUS_CODES.badRequest,
+        );
+      }
+      const result = await bcrypt.compare(password, user.password);
       if (result) {
         return user.id;
       }
       throw new RequestError('Password is incorrect', STATUS_CODES.badRequest);
+    } catch (err) {
+      throw err;
     }
-    const result = await bcrypt.compare(password, user.password);
-    if (result) {
-      return user.id;
-    }
-    throw new RequestError('Password is incorrect', STATUS_CODES.badRequest);
   };
 
   register = async (userData: IRegisterParams) => {

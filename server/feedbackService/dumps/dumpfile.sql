@@ -195,7 +195,7 @@ CREATE TABLE public."Places" (
     name character varying(255) NOT NULL,
     photos character varying(255)[] DEFAULT (ARRAY[]::character varying[])::character varying(255)[],
     tags character varying(255)[] DEFAULT (ARRAY[]::character varying[])::character varying(255)[],
-    description character varying(255),
+    description character varying(1000),
     "createdAt" timestamp with time zone NOT NULL,
     "updatedAt" timestamp with time zone NOT NULL,
     "ownerId" integer

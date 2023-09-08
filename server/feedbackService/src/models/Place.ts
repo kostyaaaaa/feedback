@@ -42,7 +42,7 @@ class Place extends Model {
   @Column({ type: DataType.ARRAY(DataType.STRING), defaultValue: [] })
   tags: Array<string>;
 
-  @Column
+  @Column({ type: DataType.STRING(1000) })
   description: string;
 
   @BelongsTo(() => User)

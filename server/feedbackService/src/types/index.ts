@@ -28,3 +28,11 @@ export interface IRegisterParams {
   role: UserRoles;
   status: UserStatuses;
 }
+
+export interface ICreatePlaceProps {
+  address: string;
+  name: string;
+  photos: Array<string>;
+  tags: Array<string>;
+  description: string;
+}
