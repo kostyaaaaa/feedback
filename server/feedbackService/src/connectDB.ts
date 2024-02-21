@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize-typescript';
-import * as models from './models';
+
 import { ConnectionError } from './errors';
+import * as models from './models';
 
 const { DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT } = process.env;
 

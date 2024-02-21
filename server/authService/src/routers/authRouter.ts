@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import { bodyMiddleware } from '../middleware';
+
 import authController from '../controllers/authController';
+import { bodyMiddleware } from '../middleware';
 
 const initAuthRouter = (): Router => {
   const router = Router();

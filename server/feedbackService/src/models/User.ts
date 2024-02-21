@@ -1,25 +1,26 @@
 import {
-  Table,
-  Column,
-  Model,
   AllowNull,
-  PrimaryKey,
   AutoIncrement,
-  Unique,
+  BelongsToMany,
+  Column,
   DataType,
+  Default,
+  HasMany,
   IsEmail,
   IsUrl,
   Length,
-  Default,
-  HasMany,
-  BelongsToMany,
+  Model,
+  PrimaryKey,
+  Table,
+  Unique,
 } from 'sequelize-typescript';
+
+import { USER_GENDERS, USER_ROLES, USER_STATUSES } from '../constants';
+import Chat from './Chat';
 import Feedback from './Feedback';
 import Message from './Message';
-import Chat from './Chat';
-import UserChat from './UserChat';
-import { USER_GENDERS, USER_STATUSES, USER_ROLES } from '../constants';
 import Place from './Place';
+import UserChat from './UserChat';
 
 @Table
 class User extends Model {

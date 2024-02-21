@@ -1,17 +1,18 @@
 import {
-  Model,
-  Table,
-  PrimaryKey,
   AutoIncrement,
+  BelongsTo,
   Column,
+  DataType,
   ForeignKey,
   IsUrl,
-  DataType,
-  BelongsTo,
+  Model,
+  PrimaryKey,
+  Table,
 } from 'sequelize-typescript';
-import User from './User';
-import Chat from './Chat';
+
 import { MESSAGE_STATUSES } from '../constants';
+import Chat from './Chat';
+import User from './User';
 
 @Table
 class Message extends Model {

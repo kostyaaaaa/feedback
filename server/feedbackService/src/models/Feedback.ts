@@ -1,17 +1,18 @@
 import {
-  Model,
-  Table,
-  PrimaryKey,
   AutoIncrement,
-  Column,
-  ForeignKey,
-  DataType,
-  Min,
-  Max,
   BelongsTo,
+  Column,
+  DataType,
+  ForeignKey,
+  Max,
+  Min,
+  Model,
+  PrimaryKey,
+  Table,
 } from 'sequelize-typescript';
-import User from './User';
+
 import Place from './Place';
+import User from './User';
 
 @Table
 class Feedback extends Model {

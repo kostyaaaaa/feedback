@@ -1,4 +1,5 @@
 import { Router } from 'express';
+
 import initAuthRouter from './authRouter';
 
 const initRootRouter = (): Router => {

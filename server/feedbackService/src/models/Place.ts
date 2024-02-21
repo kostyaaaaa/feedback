@@ -1,16 +1,17 @@
 import {
-  Model,
-  Table,
-  PrimaryKey,
-  AutoIncrement,
-  Column,
-  HasMany,
   AllowNull,
-  Unique,
+  AutoIncrement,
+  BelongsTo,
+  Column,
   DataType,
   ForeignKey,
-  BelongsTo,
+  HasMany,
+  Model,
+  PrimaryKey,
+  Table,
+  Unique,
 } from 'sequelize-typescript';
+
 import Feedback from './Feedback';
 import User from './User';
 
