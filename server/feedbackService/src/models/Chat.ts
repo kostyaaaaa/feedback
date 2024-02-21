@@ -1,16 +1,17 @@
 import {
-  Model,
-  Table,
-  PrimaryKey,
+  AllowNull,
   AutoIncrement,
+  BelongsToMany,
   Column,
   HasMany,
-  BelongsToMany,
-  AllowNull,
+  Model,
+  PrimaryKey,
+  Table,
 } from 'sequelize-typescript';
+
 import Message from './Message';
-import UserChat from './UserChat';
 import User from './User';
+import UserChat from './UserChat';
 
 @Table
 class Chat extends Model {

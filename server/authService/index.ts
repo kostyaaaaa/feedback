@@ -1,6 +1,7 @@
-import express, { Express } from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
+import dotenv from 'dotenv';
+import express, { Express } from 'express';
+
 import initRootRouter from './src/routers';
 import errorHandler from './src/utils/errorHandler';
 

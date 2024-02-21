@@ -1,6 +1,7 @@
-import { Request, Response, NextFunction, RequestHandler } from 'express';
-import { RequestError } from '../errors';
+import { NextFunction, Request, RequestHandler, Response } from 'express';
+
 import { STATUS_CODES } from '../constants';
+import { RequestError } from '../errors';
 
 export const bodyMiddleware = (
   req: Request,

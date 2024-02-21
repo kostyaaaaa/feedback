@@ -1,9 +1,10 @@
-import User from '../models/User';
 import bcrypt from 'bcryptjs';
-import { RequestError } from '../errors';
-import { STATUS_CODES } from '../constants';
-import { ILoginParams, IRegisterParams } from '../types';
 import { UniqueConstraintError, ValidationError } from 'sequelize';
+
+import { STATUS_CODES } from '../constants';
+import { RequestError } from '../errors';
+import User from '../models/User';
+import { ILoginParams, IRegisterParams } from '../types';
 
 const bcryptSalt = 4;
 

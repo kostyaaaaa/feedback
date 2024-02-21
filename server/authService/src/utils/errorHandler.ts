@@ -1,4 +1,5 @@
 import { ErrorRequestHandler } from 'express';
+
 import { STATUS_CODES } from '../constants';
 
 // global error handler middleware

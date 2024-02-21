@@ -1,7 +1,8 @@
 import { Router } from 'express';
-import initUserRouter from './userRouter';
-import initAuthRouter from './authRouter';
+
 import { tokenMiddleware } from '../middleware';
+import initAuthRouter from './authRouter';
+import initUserRouter from './userRouter';
 
 const initRootRouter = (): Router => {
   const router = Router();

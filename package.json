@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "prettier": "prettier --write './client/**/*.ts' './server/**/*.ts'",
+    "prettier": "prettier --write './client/**/*.ts' './client/**/*.tsx' './server/**/*.ts'",
     "prepare": "husky install"
   },
   "repository": {

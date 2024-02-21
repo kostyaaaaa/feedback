@@ -1,7 +1,8 @@
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { RequestError } from '../errors';
+
 import { STATUS_CODES } from '../constants';
+import { RequestError } from '../errors';
 
 interface IDecoded {
   id: string;
