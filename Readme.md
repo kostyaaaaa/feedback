@@ -2,10 +2,16 @@
 
 This project used prettier to format the code.
 
+To install local dependencies please use:
+
+```sh
+    npm run installAll
+```
+
 To run project in development mode you can use:
 
 ```sh
-    docker-compose up
+    npm run dev
 ```
 
 To get into docker container you can use:

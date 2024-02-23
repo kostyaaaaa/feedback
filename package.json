@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "prettier": "prettier --write './client/**/*.ts' './client/**/*.tsx' './server/**/*.ts'",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "installAll": "npm i && cd ./client && npm i && cd ../server/authService && npm i && cd ../clearService && npm i && cd ../feedbackService && npm i && cd ../storageService && npm i",
+    "dev": "docker-compose -f docker-compose-dev.yaml up"
   },
   "repository": {
     "type": "git",
